@@ -1,3 +1,5 @@
+__author__ = "Sanghoon Kang"
+
 import os, sys, getopt, gzip
 
 def parse_data(in_dir, out_dir):
