@@ -8,4 +8,6 @@ DailyDialog: A Manually Labelled Multi-turn Dialogue Dataset. IJCNLP 2017.
 Dataset Source: http://yanran.li/dailydialog
 
 ## Usage
-  python3 parser.py -i <input_dir> -o <output_dir>
+```
+python3 parser.py -i <input_dir> -o <output_dir>
+```
