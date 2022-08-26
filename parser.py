@@ -27,13 +27,21 @@ def parse_data(in_dir, out_dir):
     out_act_dir = os.path.join(out_dir, "act.txt.gz")
 
     # Open files
-    in_dial = open(dial_dir, "r")
-    in_emo = open(emo_dir, "r")
-    in_act = open(act_dir, "r")
-
-    out_dial = gzip.open(out_dial_dir, "w")
-    out_emo = gzip.open(out_emo_dir, "w")
-    out_act = gzip.open(out_act_dir, "w")
+    in_dial = open(dial_dir, "r", encoding="utf-8", errors="ignore")
+    in_emo = open(emo_dir, "r", encoding="utf-8", errors="ignore")
+    in_act = open(act_dir, "r", encoding="utf-8", errors="ignore")
+    out_dial = gzip.open(
+        out_dial_dir,
+        "w",
+    )
+    out_emo = gzip.open(
+        out_emo_dir,
+        "w",
+    )
+    out_act = gzip.open(
+        out_act_dir,
+        "w",
+    )
 
     for line_count, (line_dial, line_emo, line_act) in enumerate(
         zip(in_dial, in_emo, in_act)
