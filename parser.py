@@ -7,7 +7,6 @@ __author__ = "Sanghoon Kang"
 import argparse
 import gzip
 import logging
-import os
 import sys
 from pathlib import Path
 
@@ -24,7 +23,9 @@ def parse_data(in_dir, out_dir):
     dial_dir = in_dir / f"dialogues_{dirname}.txt"
     emo_dir = in_dir / f"dialogues_emotion_{dirname}.txt"
     act_dir = in_dir / f"dialogues_act_{dirname}.txt"
-    assert dial_dir.exists() and emo_dir.exists() and act_dir.exists(), f"{in_dir} does not contain the required files"
+    assert (
+        dial_dir.exists() and emo_dir.exists() and act_dir.exists()
+    ), f"{in_dir} does not contain the required files"
     out_dial_path = out_dir / "dial.txt.gz"
     out_emo_path = out_dir / "emo.txt.gz"
     out_act_path = out_dir / "act.txt.gz"
@@ -46,7 +47,9 @@ def parse_data(in_dir, out_dir):
         out_act_path,
         "w",
     )
-    pbar = tqdm(desc="Parsing", )
+    pbar = tqdm(
+        desc="Parsing",
+    )
     for line_count, (line_dial, line_emo, line_act) in enumerate(
         zip(in_dial, in_emo, in_act)
     ):
@@ -108,6 +111,7 @@ def parse_data(in_dir, out_dir):
     out_emo.close()
     out_act.close()
 
+
 def get_parser():
     """
     get_parser - a helper function for the argparse module
@@ -133,7 +137,6 @@ def get_parser():
     return parser
 
 
-
 if __name__ == "__main__":
 
     args = get_parser().parse_args()
@@ -143,7 +146,9 @@ if __name__ == "__main__":
 
     # check if paths are full paths, if not, assume they are relative to the current working directory
     if not in_dir.is_absolute():
-        logging.info("assuming input directory is relative to the current working directory")
+        logging.info(
+            "assuming input directory is relative to the current working directory"
+        )
         in_dir = Path.cwd() / in_dir
         out_dir = Path.cwd() / out_dir
 
