@@ -16,7 +16,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def parse_data(in_dir, out_dir):
+def parse_data(in_dir:str or Path, out_dir:str or Path):
+    """
+    parse_data - a function to parse the dialogues in the input directory and save them in the output directory
+
+    :param in_dir: the input directory containing the dialogues
+    :param out_dir: the output directory for the parsed dialogues
+    """
 
     # Finding files
     dirname = in_dir.name
@@ -123,14 +129,14 @@ def get_parser():
     parser.add_argument(
         "-i",
         "--in_dir",
-        type=Path,
+        type=str,
         help="Input directory containing the dialogues",
         required=True,
     )
     parser.add_argument(
         "-o",
         "--out_dir",
-        type=Path,
+        type=str,
         help="Output directory for the parsed dialogues",
         required=True,
     )
@@ -144,7 +150,6 @@ if __name__ == "__main__":
     in_dir = Path(args.in_dir)
     out_dir = Path(args.out_dir)
 
-    # check if paths are full paths, if not, assume they are relative to the current working directory
     if not in_dir.is_absolute():
         logging.info(
             "assuming input directory is relative to the current working directory"
