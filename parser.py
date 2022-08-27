@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def parse_data(in_dir:str or Path, out_dir:str or Path):
+def parse_data(in_dir: str or Path, out_dir: str or Path):
     """
     parse_data - a function to parse the dialogues in the input directory and save them in the output directory
 
@@ -36,7 +36,6 @@ def parse_data(in_dir:str or Path, out_dir:str or Path):
     out_emo_path = out_dir / "emo.txt.gz"
     out_act_path = out_dir / "act.txt.gz"
 
-    # Open files
     in_dial = open(dial_dir, "r", encoding="utf-8", errors="ignore")
     in_emo = open(emo_dir, "r", encoding="utf-8", errors="ignore")
     in_act = open(act_dir, "r", encoding="utf-8", errors="ignore")
@@ -130,7 +129,7 @@ def get_parser():
         "-i",
         "--in_dir",
         type=str,
-        help="Input directory containing the dialogues",
+        help='Input directory containing the dialogues as text files. Example: "train/"',
         required=True,
     )
     parser.add_argument(
@@ -157,7 +156,9 @@ if __name__ == "__main__":
         in_dir = Path.cwd() / in_dir
 
     split_names = ["train", "validation", "test"]
-    assert in_dir.name in split_names, f"{in_dir.name} is not a valid split name, place files in a folder named any of {split_names}"
+    assert (
+        in_dir.name in split_names
+    ), f"{in_dir.name} is not a valid split name, place files in a folder named any of {split_names}"
     if not out_dir.is_absolute():
         logging.info(
             "assuming output directory is relative to the current working directory"
