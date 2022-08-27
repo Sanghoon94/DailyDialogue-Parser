@@ -155,6 +155,9 @@ if __name__ == "__main__":
             "assuming input directory is relative to the current working directory"
         )
         in_dir = Path.cwd() / in_dir
+
+    split_names = ["train", "validation", "test"]
+    assert in_dir.name in split_names, f"{in_dir.name} is not a valid split name, place files in a folder named any of {split_names}"
     if not out_dir.is_absolute():
         logging.info(
             "assuming output directory is relative to the current working directory"
