@@ -150,7 +150,12 @@ if __name__ == "__main__":
             "assuming input directory is relative to the current working directory"
         )
         in_dir = Path.cwd() / in_dir
+    if not out_dir.is_absolute():
+        logging.info(
+            "assuming output directory is relative to the current working directory"
+        )
         out_dir = Path.cwd() / out_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     logging.info(f"Input directory:\n\t{in_dir}")
     logging.info(f"Output directory:\n\t{out_dir}")
